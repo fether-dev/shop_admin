@@ -1,0 +1,177 @@
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:imgpic/editstock.dart';
+import './main.dart';  
+class Views extends StatefulWidget{
+  List list;
+  int index;
+  Views({this.index, this.list});
+      @override
+      _ViewsState createState() => _ViewsState();
+
+    }
+
+    class _ViewsState extends State<Views>{
+        void deleteData(){
+ // var url="https://fluttertest.000webhostapp.com/delete.php";
+    //var url="http://192.168.122.1/ecart/delete.php";
+    var url="http://fluttertest.000webhostapp.com/edelete.php";
+  http.post(url, body: {
+    'id': widget.list[widget.index]['id']
+  });
+        }
+      void confirm (){
+  AlertDialog alertDialog = new AlertDialog(
+    content: new Text("Are You sure want to delete '${widget.list[widget.index]['id']}'"),
+    actions: <Widget>[
+      new RaisedButton(
+        child: new Text("OK DELETE!",style: new TextStyle(color: Colors.black),),
+        color: Colors.blueAccent[50],
+        onPressed: (){
+          deleteData();
+          Navigator.of(context).push(
+            new MaterialPageRoute(
+              builder: (BuildContext context)=> new MyHomePage(),
+            )
+          );
+        },
+      ),
+      new RaisedButton(
+        child: new Text("CANCEL",style: new TextStyle(color: Colors.black)),
+        color: Colors.blueAccent,
+        onPressed: ()=> Navigator.pop(context),
+      ),
+    ],
+  );
+  showDialog(context: context, child: alertDialog);
+}
+  @override
+  String product_image;
+   String p_img;
+   
+  void initState() {
+   
+       product_image = widget.list[widget.index]['img_name'];
+            //  print('imgname ' +product_image);
+        p_img = 'http://fluttertest.000webhostapp.com/upload/$product_image';
+        
+       //  print('imgurl' + p_img);
+    super.initState();
+  }
+  
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(title: new Text("${widget.list[widget.index]['id']}")),
+      body: new Container(
+       // margin: EdgeInsets.only(top:10.0,bottom: 5.0),
+        //padding: const EdgeInsets.all(20.0),
+        child: new Card(
+            child: new Center(
+            child: new SingleChildScrollView(
+                      child: new Column(
+                        
+               mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[ 
+                new Row(
+                   mainAxisAlignment: MainAxisAlignment.center,
+                   crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                  new Column(
+                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                         new Text("Product id",textAlign: TextAlign.justify,textDirection: TextDirection.ltr, style: new TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold,color: Colors.blue,decorationColor: Colors.black,wordSpacing: 10.0,),),
+                    ],
+                  ),
+                  new Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                         new Text(":",textAlign: TextAlign.justify,textDirection: TextDirection.ltr, style: new TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold,color: Colors.blue,decorationColor: Colors.black,wordSpacing: 10.0,),),
+                    ],
+                  ),
+                  new Column(
+                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                         new Text("${widget.list[widget.index]['id']}",textAlign: TextAlign.justify,textDirection: TextDirection.ltr, style: new TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold,color: Colors.blue,decorationColor: Colors.black,wordSpacing: 10.0,),)
+                    ],
+                  ),
+                  ],
+                 ),              
+                   new Row(
+                  children:<Widget>[
+                    new Text("Product Name"),
+                    new Text(":"),
+                    new Text("${widget.list[widget.index]['product_name']}")
+                    ]
+                    ) , 
+                new Text("PRODUCT DETAILS",textAlign: TextAlign.center, style: new TextStyle(fontSize: 23.0,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, decoration: TextDecoration.underline, decorationColor: Colors.black, decorationStyle: TextDecorationStyle.double,wordSpacing: 5.3,letterSpacing: 0.0),),
+                SizedBox(  height: 20.0,),     
+                 new Text("Product id       : ${widget.list[widget.index]['id']}",textAlign: TextAlign.justify,textDirection: TextDirection.ltr, style: new TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold,color: Colors.blue,decorationColor: Colors.black,wordSpacing: 10.0,),),
+                SizedBox(height: 5.0,),
+                new Text("Product Name     : ${widget.list[widget.index]['product_name']}",textAlign: TextAlign.justify,textDirection: TextDirection.ltr,  style: new TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold,color: Colors.blue,decorationColor: Colors.black,wordSpacing: 10.0),),
+                SizedBox(height: 5.0,),          
+                new Text("Product Stock     :  ${widget.list[widget.index]['product_stock']}",textAlign: TextAlign.justify,textDirection: TextDirection.ltr,  style: new TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold,color: Colors.blue,decorationColor: Colors.black,wordSpacing: 10.0),),
+                SizedBox(height: 5.0,),
+                new Text("Product Price       : ${widget.list[widget.index]['product_price']}",textAlign: TextAlign.justify, textDirection: TextDirection.ltr, style: new TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold,color: Colors.blue,decorationColor: Colors.black,wordSpacing: 10.0),),
+                SizedBox(height: 5.0,),
+                new Text("Product Category    : ${widget.list[widget.index]['category']}",textAlign: TextAlign.justify, textDirection: TextDirection.ltr, style: new TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold,color: Colors.blue,decorationColor: Colors.black,wordSpacing: 10.0),),
+                SizedBox(height: 5.0,),
+                new Text("Product Description   : ${widget.list[widget.index]['product_desc']}",textAlign: TextAlign.justify,   textDirection: TextDirection.ltr, style: new TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold,color: Colors.blue,decorationColor: Colors.black,wordSpacing: 8),),
+                SizedBox(height: 5.0,),
+                // new Text("product_description : ${widget.list[widget.index]['category']}", textDirection: TextDirection.ltr, style: new TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold),),
+              // new Padding(padding: const EdgeInsets.only(top: 30.0),),
+             
+          
+           //    Image.network('http://192.168.122.1/ecart/upload/$product_image', width: 10.0, height: 10.0,),  
+              CircleAvatar(
+                      radius: 150.0,
+                      backgroundImage:
+                          NetworkImage("http://fluttertest.000webhostapp.com/upload/${widget.list[widget.index]['img_name']}"),
+                      backgroundColor: Colors.transparent,
+                    ),
+                new Padding(padding: const EdgeInsets.only(top: 10.0),),
+
+                new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    
+                 new RaisedButton(
+                  child: new Text("EDIT DATA"),
+                  color: Colors.blueAccent,
+                      onPressed: ()=>Navigator.of(context).push(
+                        new MaterialPageRoute(
+                          builder: (BuildContext context)=>new EditStock(list: widget.list, index: widget.index,),
+                        )
+                      ),
+                    ),
+                     //Image.network('${widget.value.image}'),
+                    //padding: EdgeInsets.all(12.0),
+//Grab the blob from JSON:
+  
+                    new RaisedButton(
+                      child: new Text("DELETE"),
+                      color: Colors.blueAccent,
+                      onPressed: ()=>confirm(),
+                    ),
+  
+                  ],
+                ),
+                 
+              ],
+              
+            ),
+            
+            ),
+                 
+          ),
+        ),
+        
+      ),
+      
+    );
+  }
+  
+    }

@@ -1,0 +1,112 @@
+Flutter crash report; please file at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter build bundle --suppress-analytics --target /home/user/AndroidStudioProjects/ecart/lib/main.dart --filesystem-scheme org-dartlang-root --track-widget-creation --compilation-trace-file compilation.txt --depfile /home/user/AndroidStudioProjects/ecart/build/app/intermediates/flutter/debug/snapshot_blob.bin.d --asset-dir /home/user/AndroidStudioProjects/ecart/build/app/intermediates/flutter/debug/flutter_assets --debug
+
+## exception
+
+FileSystemException: FileSystemException: Cannot open file, path = '/home/user/Downloads/flutter/bin/cache/downloads/storage.googleapis.com/flutter_infra/flutter/8dc3a4cde2075a4f5458fd0eb199627f5124508d/android-arm64-release/artifacts.zip' (OS Error: No such file or directory, errno = 2)
+
+```
+#0      _File.throwIfError (dart:io/file_impl.dart:643:7)
+#1      _File.openSync (dart:io/file_impl.dart:487:5)
+#2      _File.writeAsBytesSync (dart:io/file_impl.dart:612:31)
+#3      _LocalFile&LocalFileSystemEntity&ForwardingFile.writeAsBytesSync (package:file/src/forwarding/forwarding_file.dart:124:16)
+#4      _downloadFile (package:flutter_tools/src/cache.dart:935:12)
+<asynchronous suspension>
+#5      CachedArtifact._downloadArchive.<anonymous closure> (package:flutter_tools/src/cache.dart:404:17)
+<asynchronous suspension>
+#6      CachedArtifact._withDownloadFile (package:flutter_tools/src/cache.dart:433:26)
+<asynchronous suspension>
+#7      CachedArtifact._downloadArchive (package:flutter_tools/src/cache.dart:400:12)
+#8      CachedArtifact._downloadZipArchive (package:flutter_tools/src/cache.dart:420:12)
+#9      EngineCachedArtifact.updateInner (package:flutter_tools/src/cache.dart:567:13)
+<asynchronous suspension>
+#10     CachedArtifact.update (package:flutter_tools/src/cache.dart:363:11)
+<asynchronous suspension>
+#11     Cache.updateAll (package:flutter_tools/src/cache.dart:287:26)
+<asynchronous suspension>
+#12     FlutterCommand.verifyThenRunCommand (package:flutter_tools/src/runner/flutter_command.dart:472:19)
+<asynchronous suspension>
+#13     FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:424:33)
+<asynchronous suspension>
+#14     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:153:29)
+<asynchronous suspension>
+#15     _rootRun (dart:async/zone.dart:1124:13)
+#16     _CustomZone.run (dart:async/zone.dart:1021:19)
+#17     _runZoned (dart:async/zone.dart:1516:10)
+#18     runZoned (dart:async/zone.dart:1463:12)
+#19     AppContext.run (package:flutter_tools/src/base/context.dart:152:18)
+<asynchronous suspension>
+#20     FlutterCommand.run (package:flutter_tools/src/runner/flutter_command.dart:415:20)
+#21     CommandRunner.runCommand (package:args/command_runner.dart:196:27)
+<asynchronous suspension>
+#22     FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:396:21)
+<asynchronous suspension>
+#23     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:153:29)
+<asynchronous suspension>
+#24     _rootRun (dart:async/zone.dart:1124:13)
+#25     _CustomZone.run (dart:async/zone.dart:1021:19)
+#26     _runZoned (dart:async/zone.dart:1516:10)
+#27     runZoned (dart:async/zone.dart:1463:12)
+#28     AppContext.run (package:flutter_tools/src/base/context.dart:152:18)
+<asynchronous suspension>
+#29     FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:356:19)
+<asynchronous suspension>
+#30     CommandRunner.run.<anonymous closure> (package:args/command_runner.dart:111:29)
+#31     new Future.sync (dart:async/future.dart:224:31)
+#32     CommandRunner.run (package:args/command_runner.dart:111:11)
+#33     FlutterCommandRunner.run (package:flutter_tools/src/runner/flutter_command_runner.dart:242:18)
+#34     run.<anonymous closure> (package:flutter_tools/runner.dart:60:20)
+<asynchronous suspension>
+#35     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:153:29)
+<asynchronous suspension>
+#36     _rootRun (dart:async/zone.dart:1124:13)
+#37     _CustomZone.run (dart:async/zone.dart:1021:19)
+#38     _runZoned (dart:async/zone.dart:1516:10)
+#39     runZoned (dart:async/zone.dart:1463:12)
+#40     AppContext.run (package:flutter_tools/src/base/context.dart:152:18)
+<asynchronous suspension>
+#41     runInContext (package:flutter_tools/src/context_runner.dart:51:24)
+<asynchronous suspension>
+#42     run (package:flutter_tools/runner.dart:51:10)
+#43     main (package:flutter_tools/executable.dart:59:9)
+<asynchronous suspension>
+#44     main (file:///home/user/Downloads/flutter/packages/flutter_tools/bin/flutter_tools.dart:8:3)
+#45     _startIsolate.<anonymous closure> (dart:isolate-patch/isolate_patch.dart:298:32)
+#46     _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:171:12)
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel beta, v1.6.3, on Linux, locale en_IN)
+    • Flutter version 1.6.3 at /home/user/Downloads/flutter
+    • Framework revision bc7bc94083 (2 weeks ago), 2019-05-23 10:29:07 -0700
+    • Engine revision 8dc3a4cde2
+    • Dart version 2.3.2 (build 2.3.2-dev.0.0 e3edfd36b2)
+
+[✓] Android toolchain - develop for Android devices (Android SDK version 28.0.3)
+    • Android SDK at /home/user/Android/Sdk
+    • Android NDK location not configured (optional; useful for native profiling support)
+    • Platform android-28, build-tools 28.0.3
+    • Java binary at: /DATA/android-studio/jre/bin/java
+    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1248-b01)
+    • All Android licenses accepted.
+
+[✓] Android Studio (version 3.3)
+    • Android Studio at /DATA/android-studio
+    • Flutter plugin version 33.4.1
+    • Dart plugin version 182.5215
+    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1248-b01)
+
+[✓] VS Code (version 1.33.1)
+    • VS Code at /usr/share/code
+    • Flutter extension version 3.1.0
+
+[✓] Connected device (1 available)
+    • Android SDK built for x86 • emulator-5554 • android-x86 • Android 9 (API 28) (emulator)
+
+• No issues found!
+```

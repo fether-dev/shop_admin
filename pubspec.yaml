@@ -1,0 +1,48 @@
+name: imgpic
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  dio: 2.1.2
+  intl: ^0.15.8
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  
+  cupertino_icons: ^0.1.2
+  flutter_date_picker: "^0.1.8"
+  image_picker: "^0.4.5"
+  path_provider: "^0.4.1"
+  image: "^2.0.4"
+  http: ^0.12.0+2
+  build_runner: ^1.5.2
+  path: ^1.6.2
+  
+
+
+dev_dependencies:
+  
+  flutter_test:
+    sdk: flutter
+
+
+
+flutter:
+
+  
+  uses-material-design: true
+  assets:
+    - asset/load1.gif
+    - asset/load2.gif
+    - asset/load3.gif
+    - asset/load4.gif
+    - asset/load5.gif
+    - asset/load7.gif 
+    - asset/load6.gif
+
